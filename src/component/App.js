@@ -14,7 +14,9 @@ class App extends Component {
     venues: [],
     open: false,
     filteredVenues: [],
-    markers: []
+    markers: [],
+    map: null,
+    infoWindow: null
   };
   /**
    *
@@ -93,6 +95,10 @@ class App extends Component {
     });
 
     let infowindow = new window.google.maps.InfoWindow();
+    this.setState({
+      map,
+      infowindow
+    });
     let markers = []
     this.state.venues.map(myVenue => {
       let contentString = `${myVenue.venue.name +
@@ -112,18 +118,15 @@ class App extends Component {
         id: myVenue.venue.id
       });
 
-      marker.addListener("click", toggleBounce);
-
-      function toggleBounce() {
-        if (marker.getAnimation() !== null) {
+      marker.addListener("click", () => {
+        if (marker.getAnimation() !==null) {
           marker.setAnimation(null);
         } else {
           marker.setAnimation(window.google.maps.Animation.BOUNCE);
           setTimeout(() => marker.setAnimation(null), 750);
         }
-      }
-
-      marker.addListener("click", function () {
+      });
+      marker.addListener("click", function() {
         infowindow.setContent(contentString);
         infowindow.open(map, marker);
       });
@@ -131,9 +134,21 @@ class App extends Component {
     });
     this.setState({
       markers
-    })
+    });
   };
-
+  /**
+   *
+   * @memberof App
+   */
+  listClick = id => {
+    const { map, infowindow, markers } = this.state;
+    markers.map(marker => {
+      if (marker.id === id) {
+        infowindow.setContent(`<div>${marker.title}</div>`);
+        infowindow.open(map, marker);
+      }
+    });
+  };
   /**
    *
    * @memberof App
@@ -142,9 +157,9 @@ class App extends Component {
   clickListItem = id => {
     let selectedMarker = this.state.markers.find(marker => marker.id === id);
     selectedMarker.setAnimation(window.google.maps.Animation.BOUNCE);
+    this.listClick(id);
     setTimeout(() => selectedMarker.setAnimation(null), 750);
-    /* TODO: Insert code to make InfoWindow display when venueList item is clicked */
-  }
+  };
   /**
    *
    * @memberof App
@@ -162,12 +177,19 @@ class App extends Component {
       if (venue.venue.name.toLowerCase().includes(query.toLowerCase())) {
         matchedVenues.push(venue)
       }
-    })
-    console.log(matchedVenues)
+    });
+    this.state.markers.map(marker => {
+      marker.setVisible(false);
+      matchedVenues.map(venue => {
+        if (marker.title === venue.venue.name) {
+          marker.setVisible(true);
+        }
+      });
+    });
     this.setState({
       filteredVenues: matchedVenues
-    })
-  }
+    });
+  };
   /**
    *
    * @return
