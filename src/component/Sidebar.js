@@ -37,8 +37,8 @@ class Sidebar extends Component {
                     <i className="fas fa-bars" />
                 </button>
                 '
-        <div className="filter">
-                    <div className="listHeader">Search</div>
+        <div className="filter" role="form" aria-label="filter list of map locations">
+                    <div className="listHeader" role="search" aria-label="search">Search</div>
                     <div className="filterH">
                         <input
                             className="filterPlaceholderText"
@@ -53,11 +53,11 @@ class Sidebar extends Component {
                         {this.props.filtered &&
                             this.props.filtered.map((venue, index) => {
                                 return (
-                                    <li key={index}>
+                                    <li key={index} tabindex="1">
                                         <button
                                             venue={venue}
                                             onClick={() => this.props.clickListItem(venue.venue.id)}
-                                            className="venueList"
+                                            className="venueList" role="list" aria-label="list of parks"
                                             key={index}>
                                             {venue.venue.name}
                                         </button>

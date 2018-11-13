@@ -65,8 +65,12 @@ class App extends Component {
         },
         this.renderMap()
       );
-    });
+    })
+    .catch(error => {
+      alert("error: " + error)
+    })
   };
+
   /* Sidebar function */
   toggleDrawer = () => {
     this.setState({
@@ -139,9 +143,6 @@ class App extends Component {
     let selectedMarker = this.state.markers.find(marker => marker.id === id);
     selectedMarker.setAnimation(window.google.maps.Animation.BOUNCE);
     setTimeout(() => selectedMarker.setAnimation(null), 750);
-    let infowindow =
-      this.state.setZoom(13);
-    this.state.setCenter(selectedMarker.position);
     /* TODO: Insert code to make InfoWindow display when venueList item is clicked */
   }
   /**
@@ -177,7 +178,7 @@ class App extends Component {
   render() {
     return (
       <div className="App" role="application" aria-label="Map Application">
-        <button className="hamburger" onClick={() => this.toggleDrawer()}>
+        <button className="hamburger" onClick={() => this.toggleDrawer()} tabindex="0">
           <i className="fas fa-bars" />
         </button>
         <CssBaseline />
@@ -193,7 +194,7 @@ class App extends Component {
             clickListItem={this.clickListItem}
           />
         </div>
-        <div id="map" />
+        <div id="map" role="main" aria-label="map" />
       </div>
     );
   }
