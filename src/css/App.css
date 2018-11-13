@@ -1,0 +1,116 @@
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+.App {
+  text-align: center;
+  background-color: #9bbff4;
+  padding: 0;
+  margin: 0;
+}
+
+.App-link {
+  color: #3B444C;
+}
+
+html, body {
+  max-height: 100%;
+}
+
+a {
+  color: #3B444C;
+}
+
+h1 {
+  font-size: calc(18px + 2vmin);
+  background-color: #3B444C;
+  margin: 0;
+  padding: 15px 15px 5px 0;
+  color: #fff;
+  text-align: center;
+}
+
+.listHeader {
+  font-size: calc(18px + 2vmin);
+  background-color:#3B444C;
+  padding: 25px 15px 10px;
+  color: #fff;
+  text-align: center;
+}
+
+h2 {
+  font-weight: 300;
+  font-size: calc(10px + 2vmin);
+  color: #3B444C;
+  padding: 0;
+  margin-bottom: 5px;
+}
+
+p {
+  font-weight: 300;
+  font-size: 15px;
+  padding: 3px;
+  margin: 0;
+}
+
+img {
+  border-radius: 5px;
+}
+
+footer {
+  position: fixed;
+}
+
+.hamburger {
+  color: #fff;
+  background: #9bbff4;
+  font-size: calc(7px + 2vmin);;
+  float: left;
+  border: none;
+}
+
+.powered {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 10px;
+  padding: -10px 15px 5px 15px;
+}
+
+.venueList {
+  background: none;
+  border: none;
+  font-size: 16px;
+  padding: 10px;
+}
+
+ul {
+  list-style-type: none;
+  margin-top: 0;
+  background-color: #3B444C;
+}
+
+button {
+  color: #fff;
+}
+
+button:hover {
+  color: #9bbff4;
+  background-color: white;
+}
+
+input {
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  align-content: center;
+  width: 80%;
+  font-size: 14px;
+}
+
+.filter {
+  background-color: #3B444C;
+}
+
+.filterH {
+  padding-left: 40px;
+}
