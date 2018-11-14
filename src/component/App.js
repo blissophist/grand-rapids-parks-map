@@ -114,7 +114,9 @@ class App extends Component {
         animation: window.google.maps.Animation.DROP,
         map: map,
         title: myVenue.venue.name,
-        id: myVenue.venue.id
+        id: myVenue.venue.id,
+        address: myVenue.venue.location.address,
+        city: myVenue.venue.location.city
       });
 
       marker.addListener("click", () => {
@@ -143,7 +145,7 @@ class App extends Component {
     const { map, infowindow, markers } = this.state;
     markers.map(marker => {
       if (marker.id === id) {
-        infowindow.setContent(`<div>${marker.title}</div>`);
+        infowindow.setContent(`<div>${marker.title}</div><div>${marker.address}</div><div>${marker.city}</div>`);
         infowindow.open(map, marker);
       }
     });
@@ -195,7 +197,7 @@ class App extends Component {
    * @memberof App
    */
   /* Render state of the app */
-  /*Assistance on Sidebar provided by Daphne*/
+  /* Assistance on Sidebar provided by Daphne */
   render() {
     return (
       <div className="App" role="application" aria-label="Map Application">
