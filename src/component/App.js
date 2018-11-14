@@ -103,9 +103,8 @@ class App extends Component {
     this.state.venues.map(myVenue => {
       let contentString = `${myVenue.venue.name +
         ", " +
-        myVenue.venue.location.city +
-        ", " +
-        myVenue.venue.location.address}`;
+        myVenue.venue.location.address +
+        ", " + myVenue.venue.location.city}`;
 
       let marker = new window.google.maps.Marker({
         position: {
@@ -200,7 +199,7 @@ class App extends Component {
   render() {
     return (
       <div className="App" role="application" aria-label="Map Application">
-        <button className="hamburger" onClick={() => this.toggleDrawer()} tabindex="0">
+        <button className="hamburger" onClick={() => this.toggleDrawer()} tabIndex="0">
           <i className="fas fa-bars" />
         </button>
         <CssBaseline />

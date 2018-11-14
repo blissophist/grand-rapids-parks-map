@@ -53,7 +53,7 @@ class Sidebar extends Component {
                         {this.props.filtered &&
                             this.props.filtered.map((venue, index) => {
                                 return (
-                                    <li key={index} tabindex="1">
+                                    <li key={index} tabIndex="1">
                                         <button
                                             venue={venue}
                                             onClick={() => this.props.clickListItem(venue.venue.id)}
