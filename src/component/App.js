@@ -100,7 +100,7 @@ class App extends Component {
       infowindow
     });
     let markers = []
-    this.state.venues.map(myVenue => {
+    this.state.venues.forEach(myVenue => {
       let contentString = `${myVenue.venue.name +
         ", " +
         myVenue.venue.location.address +
@@ -143,7 +143,7 @@ class App extends Component {
    */
   listClick = id => {
     const { map, infowindow, markers } = this.state;
-    markers.map(marker => {
+    markers.forEach(marker => {
       if (marker.id === id) {
         infowindow.setContent(`<div>${marker.title}</div><div>${marker.address}</div><div>${marker.city}</div>`);
         infowindow.open(map, marker);
@@ -179,9 +179,9 @@ class App extends Component {
         matchedVenues.push(venue)
       }
     });
-    this.state.markers.map(marker => {
+    this.state.markers.forEach(marker => {
       marker.setVisible(false);
-      matchedVenues.map(venue => {
+      matchedVenues.forEach(venue => {
         if (marker.title === venue.venue.name) {
           marker.setVisible(true);
         }
